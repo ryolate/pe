@@ -3,34 +3,22 @@ MOD = 10 ** 9 + 7
 
 def A(k: int, n: int) -> int:
     n = n // k
-    print("A")
     fact = [0] * (k + 1)
-    print("A2")
     for i in range(k + 1):
-        if i * 100 % k == 0:
-            print(f"A: {i}")
         fact[i] = 1 if i == 0 else fact[i - 1] * i % MOD
-    print("A3")
     ifact = [0] * (k + 1)
     for i in range(k, -1, -1):
         ifact[i] = (
             pow(fact[i], MOD - 2, MOD) if i == k else ifact[i + 1] * (i + 1) % MOD
         )
 
+    mul2 = pow(pow(2, MOD - 2, MOD), 2 * n, MOD)
+    pow2 = pow(2, n * k, MOD)
+
     res = 0
-    for m in range(k):
-        if m * 2 > k:
-            break
-        if m * 200 % k == 0:
-            print(m)
-        res = (
-            res
-            + fact[k]
-            * ifact[m]
-            * ifact[m]
-            * ifact[k - 2 * m]
-            * pow(2, n * (k - 2 * m), MOD)
-        ) % MOD
+    for m in range(k // 2 + 1):
+        res = (res + fact[k] * ifact[m] * ifact[m] * ifact[k - 2 * m] * pow2) % MOD
+        pow2 = pow2 * mul2 % MOD
     return res
 
 
