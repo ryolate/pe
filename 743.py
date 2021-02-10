@@ -9,7 +9,8 @@ def A(k: int, n: int) -> int:
     ifact = [0] * (k + 1)
     for i in range(k, -1, -1):
         ifact[i] = (
-            pow(fact[i], MOD - 2, MOD) if i == k else ifact[i + 1] * (i + 1) % MOD
+            pow(fact[i], MOD - 2, MOD)
+            if i == k else ifact[i + 1] * (i + 1) % MOD
         )
 
     mul2 = pow(pow(2, MOD - 2, MOD), 2 * n, MOD)
@@ -17,7 +18,8 @@ def A(k: int, n: int) -> int:
 
     res = 0
     for m in range(k // 2 + 1):
-        res = (res + fact[k] * ifact[m] * ifact[m] * ifact[k - 2 * m] * pow2) % MOD
+        res = (res + fact[k] * ifact[m] * ifact[m]
+               * ifact[k - 2 * m] * pow2) % MOD
         pow2 = pow2 * mul2 % MOD
     return res
 

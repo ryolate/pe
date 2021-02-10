@@ -11,7 +11,8 @@ inv9 = inv(9)
 def S(k: int) -> int:
     l = k // 9
     k = k % 9
-    res = -(9 * l + k + 54 * inv9) + (54 * inv9 + k * (k + 3) // 2) * pow(10, l, MOD)
+    res = -(9 * l + k + 54 * inv9) + \
+        (54 * inv9 + k * (k + 3) // 2) * pow(10, l, MOD)
     return (res % MOD + MOD) % MOD
 
 
@@ -22,7 +23,7 @@ def test_S():
 def main():
     a, b = 0, 1
     res = 0
-    for i in range(2, 91):
+    for _ in range(2, 91):
         a, b = b, a + b
         res += S(b)
     res = (res % MOD + MOD) % MOD
