@@ -5,7 +5,9 @@
         "lib": [
             "esnext"
         ],
-        "module": "esnext",
+        // Transpile to commonjs code; nodejs assumes it by default.
+        // Still we can use ES6 import/export in the TS code.
+        "module": "commonjs",
         "target": "esnext",
         "strict": true,
         "esModuleInterop": true,
